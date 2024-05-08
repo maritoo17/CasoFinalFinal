@@ -2,17 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserAccount {
-    String alias;
+    public String alias;
     private String email;
-    private List<Tweet> tweets = new ArrayList<>();
-    private List<Tweet> timeline = new ArrayList<>();
-    private List<UserAccount> following = new ArrayList<>();
-    private List<UserAccount> followers = new ArrayList<>();
-
-
-    public String getAlias() {
-        return alias;
-    }
+    private List<Tweet> tweets;
+    private List<Tweet> timeline;
+    private List<UserAccount> following;
+    private List<UserAccount> followers;
 
     public UserAccount(String alias, String email) {
         if (!Utils.isValidEmail(email)) {
@@ -23,27 +18,41 @@ public class UserAccount {
         }
         this.alias = alias;
         this.email = email;
+        this.tweets = new ArrayList<>();
+        this.timeline = new ArrayList<>();
+        this.following = new ArrayList<>();
+        this.followers = new ArrayList<>();
+    }
+
+    public String getAlias() {
+        return alias;
     }
 
     public void follow(UserAccount user) {
-        if (user != null && !following.contains(user)) {
-            following.add(user);
+        if (user != null && !this.following.contains(user)) {
+            this.following.add(user);
             user.followers.add(this);
         }
     }
 
     public void tweet(Tweet tweet) {
-        tweets.add(tweet);
-        for (UserAccount follower : followers) {
-            follower.timeline.add(tweet);
+        if (tweet != null) {
+            this.tweets.add(tweet);
+            for (UserAccount follower : followers) {
+                follower.timeline.add(tweet);
+            }
         }
     }
 
     @Override
     public String toString() {
-        return "User: " + alias + ", Email: " + email;
+        return "UserAccount{" +
+                "alias='" + alias + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
+
 
 class Utils {
     public static boolean isValidEmail(String email) {

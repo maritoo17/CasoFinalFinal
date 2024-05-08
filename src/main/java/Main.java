@@ -22,7 +22,7 @@ public class Main {
 
     private static UserAccount findUser(Scanner scanner) {
         System.out.println("Enter user alias:");
-        String alias = scanner.next();
+        String alias = scanner.nextLine();
         for (UserAccount user : userAccounts) {
             if (user.getAlias().equals(alias)) {
                 return user;
