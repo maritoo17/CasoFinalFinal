@@ -2,7 +2,7 @@
 https://github.com/maritoo17/CasoFinalFinal.git
 
 
-#### ----- Ejercicio 1 -----
+----- *****Ejercicio 1***** -----
 1: b)    Debemos establecer la visibilidad más restrictiva (por ejemplo, privada) en los atributos de una clase. Así, cualquier software que utilice nuestro objeto, sólo accederá al estado de los objetos mediante los     
          métodos que le hayamos permitido utilizar.
 2: b)    Falso
@@ -11,7 +11,7 @@ https://github.com/maritoo17/CasoFinalFinal.git
 5: b)    Falso
 
 
-#### ----- Ejercicio 2 -----
+----- *****Ejercicio 2***** -----
 2)
 Tabla Hash:
 - Las tablas hash están diseñadas para proporcionar acceso, inserción y eliminación de datos en tiempo constante promedio, 𝑂(1)
@@ -84,5 +84,9 @@ Queremos encontrar el valor de 𝑛 a partir del cual 𝐴 es más eficiente que
 𝑛 > 8
 Por lo tanto, 𝐴 es más eficiente que 𝐵 cuando 𝑛 > 8.
 
-#### ----- Ejercicio 3 -----
+----- *****Ejercicio 3***** -----
+
+a) El código dado no compila, la solución y la explicación está en la carpeta "Ejercicio3" que podrás encontrar dentro de este mismo repositorio.
+b) Este código es un intento de implementar una función recursiva para calcular potencias, pero requiere ajustes en la lógica para manejar mejor los casos base y el ámbito de las variables. Además, la función no maneja correctamente los exponentes negativos para replicar la funcionalidad matemática estándar de potencias.
+
 
