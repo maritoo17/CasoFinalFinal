@@ -15,7 +15,7 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("\nBienvenido Rubén, que deseas hacer:\n1. Escribir un tweet\n2. Ver el timeline de tweets:\n3. Seguir a un usuario:\nEscribe 'exit' para salir.");
+            System.out.println("\nBienvenido Rubén, ¿qué deseas hacer?:\n1. Escribir un tweet\n2. Ver el timeline de tweets\n3. Seguir a un usuario\n4. Ver timeline de seguimientos\nEscribe 'exit' para salir.");
             System.out.print("Elige una opción: ");
             String input = scanner.nextLine().trim();
 
@@ -29,11 +29,14 @@ public class Main {
                 case "3":
                     followUser(scanner);
                     break;
+                case "4":
+                    showFollowTimeline(); // Nueva opción para mostrar el timeline de seguimientos
+                    break;
                 case "exit":
                     running = false;
                     break;
                 default:
-                    System.out.println("Opcion inválida. Por favor, elige una opción válida.");
+                    System.out.println("Opción inválida. Por favor, elige una opción válida.");
                     break;
             }
         }
@@ -62,8 +65,18 @@ public class Main {
         }
     }
 
+    private static void showFollowTimeline() {
+        List<String> followActivities = currentUser.getFollowActivities();
+        if (followActivities.isEmpty()) {
+            System.out.println("No hay actividades de seguimiento.");
+        } else {
+            System.out.println("Actividades de seguimiento:");
+            followActivities.forEach(System.out::println);
+        }
+    }
+
     private static void followUser(Scanner scanner) {
-        System.out.print("Mete el alias del usuario que quieras meter: ");
+        System.out.print("Mete el alias del usuario que quieras seguir: ");
         String alias = scanner.nextLine().trim();
 
         if (alias.equals(currentUser.getAlias())) {
@@ -83,7 +96,6 @@ public class Main {
 
         UserAccount userToFollow = allUsers.get(alias);
         currentUser.follow(userToFollow);
-        System.out.println("Ahora siguiendo a" + alias);
+        System.out.println("Ahora siguiendo a " + alias);
     }
-
 }
