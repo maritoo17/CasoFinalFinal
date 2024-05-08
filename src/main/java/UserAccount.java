@@ -28,6 +28,10 @@ public class UserAccount {
         return alias;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void follow(UserAccount user) {
         if (user == null) {
             throw new IllegalArgumentException("Cannot follow null user.");
