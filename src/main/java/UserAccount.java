@@ -2,26 +2,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserAccount {
-    public String alias;
+    private String alias;
     private String email;
     private List<Tweet> tweets;
-    private List<Tweet> timeline;
-    private List<UserAccount> following;
     private List<UserAccount> followers;
+    private List<Tweet> timeline;
 
     public UserAccount(String alias, String email) {
-        if (!Utils.isValidEmail(email)) {
-            throw new IllegalArgumentException("Invalid email address.");
-        }
-        if (!Utils.isValidAlias(alias)) {
-            throw new IllegalArgumentException("Invalid alias. Alias must contain only letters and numbers.");
-        }
         this.alias = alias;
         this.email = email;
         this.tweets = new ArrayList<>();
-        this.timeline = new ArrayList<>();
-        this.following = new ArrayList<>();
         this.followers = new ArrayList<>();
+        this.timeline = new ArrayList<>();
     }
 
     public String getAlias() {
@@ -32,24 +24,12 @@ public class UserAccount {
         return email;
     }
 
-    public void follow(UserAccount user) {
-        if (user == null) {
-            throw new IllegalArgumentException("Cannot follow null user.");
-        }
-        if (user == this) {
-            throw new IllegalArgumentException("Cannot follow oneself.");
-        }
-        if (!following.contains(user)) {
-            following.add(user);
-            user.followers.add(this);
-        }
-    }
-
-    public void tweet(Tweet tweet) {
-        if (tweet == null) {
-            throw new IllegalArgumentException("Cannot tweet a null object.");
+    public void tweet(Tweet tweet) throws IllegalArgumentException {
+        if (tweet.getMessage().length() > 140) {
+            throw new IllegalArgumentException("Tweet cannot exceed 140 characters.");
         }
         tweets.add(tweet);
+        timeline.add(tweet);
         for (UserAccount follower : followers) {
             follower.timeline.add(tweet);
         }
