@@ -90,3 +90,11 @@ a) El código dado no compila, la solución y la explicación está en la carpet
 b) Este código es un intento de implementar una función recursiva para calcular potencias, pero requiere ajustes en la lógica para manejar mejor los casos base y el ámbito de las variables. Además, la función no maneja correctamente los exponentes negativos para replicar la funcionalidad matemática estándar de potencias.
 
 
+----- *****Ejercicio 4***** ----- 
+
+Resuelto y explicado en la carpeta "Ejercicio4" que podrá encontrar en el repositorio.
+
+
+----- *****Ejercicio 5***** -----
+
+Código hecho en la carpeta "java", son los archivos que están sueltos, NO están metidos en carpetas como los demás ejercicios. 
