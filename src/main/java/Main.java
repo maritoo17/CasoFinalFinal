@@ -13,6 +13,8 @@ public class Main {
         currentUser = new UserAccount("Rubén", "Rubén@example.com");
         allUsers.put(currentUser.getAlias(), currentUser);
 
+        preloadTweets();
+
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -130,17 +132,29 @@ public class Main {
     }
 
     private static void retweet(Scanner scanner) {
+        if (allTweets.isEmpty()) {
+            System.out.println("No hay tweets disponibles para retweetear.");
+            return;
+        }
+
         System.out.println("Lista de Tweets disponibles para retweetear:");
         allTweets.forEach(tweet -> System.out.println(tweet.getID() + ": " + tweet));
+
         System.out.print("Ingrese el ID del tweet a retweetear: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline left-over
-        Tweet originalTweet = allTweets.stream().filter(t -> t.getID() == id).findFirst().orElse(null);
+        scanner.nextLine();
+
+        Tweet originalTweet = allTweets.stream()
+                .filter(t -> t.getID() == id)
+                .findFirst()
+                .orElse(null);
+
         if (originalTweet == null) {
             System.out.println("Tweet no encontrado.");
             return;
         }
-        Retweet retweet = new Retweet("Retweeted", currentUser, originalTweet);
+
+        Retweet retweet = new Retweet("Retweeteado.", currentUser, originalTweet);
         currentUser.tweet(retweet);
         System.out.println("Retweet realizado con éxito.");
     }
