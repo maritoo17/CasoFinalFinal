@@ -15,11 +15,6 @@ public class Retweet extends Tweet {
 
     @Override
     public String toString() {
-        return "Retweet{" +
-                "message='" + message + '\'' +
-                ", time=" + time +
-                ", sender=" + sender.getAlias() +
-                ", originalTweet='{" + originalTweet.getMessage() + "}'" +
-                '}';
+        return "Retweet of [" + originalTweet.toString() + "] | " + super.toString();
     }
 }
