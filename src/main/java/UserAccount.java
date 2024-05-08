@@ -56,5 +56,13 @@ public class UserAccount {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    public void tweet(Tweet tweet) throws IllegalArgumentException {
+        if (tweet.getMessage().length() > 140) {
+            throw new IllegalArgumentException("Tweet cannot exceed 140 characters.");
+        }
+        tweets.add(tweet);
+    }
+
 }
 
