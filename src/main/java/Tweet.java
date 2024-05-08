@@ -25,8 +25,8 @@ public class Tweet {
 
     @Override
     public String toString() {
-        return "Tweet from " + sender.getAlias() +
-                " at " + time +
+        return "Tweet de " + sender.getAlias() +
+                " el día " + time +
                 ": \"" + message + "\"";
     }
 }
