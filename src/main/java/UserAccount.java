@@ -29,18 +29,17 @@ public class UserAccount {
     }
 
     public void follow(UserAccount user) {
-        if (user != null && !this.following.contains(user)) {
-            this.following.add(user);
-            user.followers.add(this);
+        if (user == null) {
+            throw new IllegalArgumentException("Cannot follow null user.");
         }
-    }
-
-    public void tweet(Tweet tweet) {
-        if (tweet != null) {
-            this.tweets.add(tweet);
-            for (UserAccount follower : followers) {
-                follower.timeline.add(tweet);
-            }
+        if (user == this) {
+            throw new IllegalArgumentException("Cannot follow oneself.");
+        }
+        if (!following.contains(user)) {
+            following.add(user);
+            user.followers.add(this);
+        } else {
+            System.out.println("Already following " + user.alias);
         }
     }
 
@@ -52,6 +51,7 @@ public class UserAccount {
                 '}';
     }
 }
+
 
 
 class Utils {
