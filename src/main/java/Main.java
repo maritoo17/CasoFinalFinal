@@ -144,4 +144,12 @@ public class Main {
         currentUser.tweet(retweet);
         System.out.println("Retweet realizado con éxito.");
     }
+
+    private static void preloadTweets() {
+        allTweets.add(new Tweet("¡Hola, mundo!", currentUser));
+        allTweets.add(new Tweet("Explorando Java y sus posibilidades.", currentUser));
+        allTweets.add(new Tweet("¿Alguien para intercambiar ideas sobre programación?", currentUser));
+        allTweets.add(new Tweet("Este es un tweet más en tu feed.", currentUser));
+        allTweets.add(new Tweet("Último tweet del día, ¡buenas noches!", currentUser));
+    }
 }
