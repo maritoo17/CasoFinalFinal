@@ -1,39 +1,32 @@
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
-    private static ArrayList<UserAccount> userAccounts = new ArrayList<>();
+    private static UserAccount currentUser;
 
     public static void main(String[] args) {
-        loadUsersFromFile("users.txt");
-        UserAccount user = findUserByAliasWithSentinel("desiredAlias");
-        if (user != null) {
-            System.out.println("Usuario cargado: " + user);
-        } else {
-            System.out.println("Usuario no encontrado.");
+        currentUser = new UserAccount("user123", "user123@example.com");
+
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+
+        while (running) {
+            System.out.println("Write your tweet (or type 'exit' to quit):");
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("exit")) {
+                running = false;
+                continue;
+            }
+
+            try {
+                Tweet newTweet = new Tweet(input, currentUser);
+                currentUser.tweet(newTweet);
+                System.out.println("Tweet successfully posted!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
         }
-    }
 
-    private static void loadUsersFromFile(String fileName) {
-        userAccounts.add(new UserAccount("user1", "user1@example.com"));
-        userAccounts.add(new UserAccount("user2", "user2@example.com"));
-        userAccounts.add(new UserAccount("user3", "user3@example.com"));
-    }
-
-    private static UserAccount findUserByAliasWithSentinel(String alias) {
-        UserAccount sentinel = new UserAccount(alias, "sentinel@example.com");
-        userAccounts.add(sentinel);
-        int i = 0;
-
-        while (!userAccounts.get(i).getAlias().equals(alias)) {
-            i++;
-        }
-
-        userAccounts.remove(sentinel);
-
-        if (i < userAccounts.size() && !userAccounts.get(i).getEmail().equals("sentinel@example.com")) {
-            return userAccounts.get(i); // Found the user
-        } else {
-            return null;
-        }
+        scanner.close();
     }
 }
