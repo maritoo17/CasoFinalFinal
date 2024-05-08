@@ -28,10 +28,8 @@ public class Tweet {
 
     @Override
     public String toString() {
-        return "Tweet{" +
-                "message='" + message + '\'' +
-                ", time=" + time +
-                ", sender=" + sender.getAlias() +
-                '}';
+        return "Tweet from " + sender.getAlias() +
+                " at " + time +
+                ": \"" + message + "\"";
     }
 }
