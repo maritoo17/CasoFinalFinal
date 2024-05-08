@@ -1,41 +1,16 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
     private static ArrayList<UserAccount> userAccounts = new ArrayList<>();
 
     public static void main(String[] args) {
         loadUsersFromFile("users.txt");
-        Scanner scanner = new Scanner(System.in);
-        boolean running = true;
-
-        while (running) {
-            System.out.println("\nMenu:");
-            System.out.println("1. Load User by Alias");
-            System.out.println("2. Exit");
-            System.out.print("Choose an option: ");
-            int option = Utils.leerEntero();
-
-            switch (option) {
-                case 1:
-                    System.out.print("Enter user alias to load: ");
-                    String alias = Utils.leerCadena();
-                    UserAccount user = findUserByAlias(alias);
-                    if (user != null) {
-                        System.out.println("Loaded User: " + user);
-                    } else {
-                        System.out.println("User not found.");
-                    }
-                    break;
-                case 2:
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Invalid option.");
-                    break;
-            }
+        UserAccount user = findUserByAliasWithSentinel("desiredAlias");
+        if (user != null) {
+            System.out.println("Usuario cargado: " + user);
+        } else {
+            System.out.println("Usuario no encontrado.");
         }
-        scanner.close();
     }
 
     private static void loadUsersFromFile(String fileName) {
@@ -44,12 +19,21 @@ public class Main {
         userAccounts.add(new UserAccount("user3", "user3@example.com"));
     }
 
-    private static UserAccount findUserByAlias(String alias) {
-        for (UserAccount user : userAccounts) {
-            if (user.getAlias().equals(alias)) {
-                return user;
-            }
+    private static UserAccount findUserByAliasWithSentinel(String alias) {
+        UserAccount sentinel = new UserAccount(alias, "sentinel@example.com");
+        userAccounts.add(sentinel);
+        int i = 0;
+
+        while (!userAccounts.get(i).getAlias().equals(alias)) {
+            i++;
         }
-        return null;
+
+        userAccounts.remove(sentinel);
+
+        if (i < userAccounts.size() && !userAccounts.get(i).getEmail().equals("sentinel@example.com")) {
+            return userAccounts.get(i); // Found the user
+        } else {
+            return null;
+        }
     }
 }
