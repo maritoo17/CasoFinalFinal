@@ -4,7 +4,7 @@ public class DirectMessage extends Tweet {
     public DirectMessage(String message, UserAccount sender, UserAccount receiver) {
         super(message, sender);
         if (receiver == null) {
-            throw new IllegalArgumentException("Receiver cannot be null.");
+            throw new IllegalArgumentException("El recibidor no puede ser nulo.");
         }
         this.receiver = receiver;
     }
@@ -15,6 +15,6 @@ public class DirectMessage extends Tweet {
 
     @Override
     public String toString() {
-        return "DirectMessage to " + receiver.getAlias() + " | " + super.toString();
+        return "DirectMessage a " + receiver.getAlias() + " | " + super.toString();
     }
 }

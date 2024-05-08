@@ -4,11 +4,13 @@ public class Tweet {
     private String message;
     private LocalDate time;
     private UserAccount sender;
+    private int ID;
 
     public Tweet(String message, UserAccount sender) {
         this.message = message;
         this.time = LocalDate.now();
         this.sender = sender;
+        this.ID = 0;
     }
 
     public String getMessage() {
@@ -19,8 +21,13 @@ public class Tweet {
         return time;
     }
 
+
     public UserAccount getSender() {
         return sender;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     @Override
