@@ -6,16 +6,32 @@ public class Tweet {
     protected UserAccount sender;
 
     public Tweet(String message, UserAccount sender) {
-        if (message.length() > 140) {
-            throw new IllegalArgumentException("Message cannot exceed 140 characters.");
+        if (message == null || message.length() > 140) {
+            throw new IllegalArgumentException("Message must not exceed 140 characters and cannot be null.");
         }
         this.message = message;
         this.time = LocalDate.now();
         this.sender = sender;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public LocalDate getTime() {
+        return time;
+    }
+
+    public UserAccount getSender() {
+        return sender;
+    }
+
     @Override
     public String toString() {
-        return "Time: " + time + ", Sender: " + sender.alias + ", Message: " + message;
+        return "Tweet{" +
+                "message='" + message + '\'' +
+                ", time=" + time +
+                ", sender=" + sender.getAlias() +
+                '}';
     }
 }
