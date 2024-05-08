@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ public class UserAccount {
     private List<UserAccount> followers;
     private List<UserAccount> following;
     private List<Tweet> timeline;
+    private List<String> followActivities;
 
     public UserAccount(String alias, String email) {
         this.alias = alias;
@@ -16,21 +18,19 @@ public class UserAccount {
         this.followers = new ArrayList<>();
         this.following = new ArrayList<>();
         this.timeline = new ArrayList<>();
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public String getEmail() {
-        return email;
+        this.followActivities = new ArrayList<>();
     }
 
     public void follow(UserAccount otherUser) {
         if (!following.contains(otherUser)) {
             following.add(otherUser);
             otherUser.followers.add(this);
+            followActivities.add("Followed " + otherUser.getAlias() + " on " + LocalDate.now());
         }
+    }
+
+    public List<String> getFollowActivities() {
+        return followActivities;
     }
 
     public List<UserAccount> getFollowing() {
@@ -49,6 +49,21 @@ public class UserAccount {
         return tweets;
     }
 
+    public void tweet(Tweet tweet) throws IllegalArgumentException {
+        if (tweet.getMessage().length() > 140) {
+            throw new IllegalArgumentException("El tweet no puede superar los 140 caracteres.");
+        }
+        tweets.add(tweet);
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String toString() {
         return "UserAccount{" +
@@ -56,13 +71,4 @@ public class UserAccount {
                 ", email='" + email + '\'' +
                 '}';
     }
-
-    public void tweet(Tweet tweet) throws IllegalArgumentException {
-        if (tweet.getMessage().length() > 140) {
-            throw new IllegalArgumentException("Tweet cannot exceed 140 characters.");
-        }
-        tweets.add(tweet);
-    }
-
 }
-
