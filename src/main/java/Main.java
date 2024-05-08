@@ -30,7 +30,7 @@ public class Main {
                     followUser(scanner);
                     break;
                 case "4":
-                    showFollowTimeline(); // Nueva opción para mostrar el timeline de seguimientos
+                    showFollowTimeline();
                     break;
                 case "exit":
                     running = false;

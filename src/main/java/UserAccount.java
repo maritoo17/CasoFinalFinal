@@ -25,7 +25,7 @@ public class UserAccount {
         if (!following.contains(otherUser)) {
             following.add(otherUser);
             otherUser.followers.add(this);
-            followActivities.add("Followed " + otherUser.getAlias() + " on " + LocalDate.now());
+            followActivities.add("Seguido a  " + otherUser.getAlias() + " el " + LocalDate.now());
         }
     }
 
