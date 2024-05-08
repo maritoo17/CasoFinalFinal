@@ -15,11 +15,6 @@ public class DirectMessage extends Tweet {
 
     @Override
     public String toString() {
-        return "DirectMessage{" +
-                "message='" + message + '\'' +
-                ", time=" + time +
-                ", sender=" + sender.getAlias() +
-                ", receiver=" + receiver.getAlias() +
-                '}';
+        return "DirectMessage to " + receiver.getAlias() + " | " + super.toString();
     }
 }
