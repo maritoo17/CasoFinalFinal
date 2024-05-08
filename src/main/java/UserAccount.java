@@ -38,8 +38,6 @@ public class UserAccount {
         if (!following.contains(user)) {
             following.add(user);
             user.followers.add(this);
-        } else {
-            System.out.println("Already following " + user.alias);
         }
     }
 
