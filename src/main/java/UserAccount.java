@@ -43,6 +43,16 @@ public class UserAccount {
         }
     }
 
+    public void tweet(Tweet tweet) {
+        if (tweet == null) {
+            throw new IllegalArgumentException("Cannot tweet a null object.");
+        }
+        tweets.add(tweet);
+        for (UserAccount follower : followers) {
+            follower.timeline.add(tweet);
+        }
+    }
+
     @Override
     public String toString() {
         return "UserAccount{" +
@@ -51,8 +61,6 @@ public class UserAccount {
                 '}';
     }
 }
-
-
 
 class Utils {
     public static boolean isValidEmail(String email) {
