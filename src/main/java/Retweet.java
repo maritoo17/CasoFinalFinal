@@ -3,6 +3,9 @@ public class Retweet extends Tweet {
 
     public Retweet(String message, UserAccount sender, Tweet originalTweet) {
         super(message, sender);
+        if (originalTweet == null) {
+            throw new IllegalArgumentException("Original tweet cannot be null.");
+        }
         this.originalTweet = originalTweet;
     }
 
@@ -16,7 +19,7 @@ public class Retweet extends Tweet {
                 "message='" + message + '\'' +
                 ", time=" + time +
                 ", sender=" + sender.getAlias() +
-                ", originalTweet=" + originalTweet.getMessage() +
+                ", originalTweet='{" + originalTweet.getMessage() + "}'" +
                 '}';
     }
 }
