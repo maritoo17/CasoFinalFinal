@@ -9,6 +9,11 @@ public class UserAccount {
     private List<UserAccount> following = new ArrayList<>();
     private List<UserAccount> followers = new ArrayList<>();
 
+
+    public String getAlias() {
+        return alias;
+    }
+
     public UserAccount(String alias, String email) {
         if (!Utils.isValidEmail(email)) {
             throw new IllegalArgumentException("Invalid email address.");
